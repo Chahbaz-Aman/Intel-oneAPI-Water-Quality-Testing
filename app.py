@@ -17,6 +17,7 @@ st.set_page_config(
 local_css("style.css")
 
 st.title('Is your water drinkable?')
+st.markdown('_Developed using Intel oneAPI Toolkit_')
 
 left, right = st.columns(2)
 ############################################################################
