@@ -5,7 +5,7 @@
     color: #C3E0E5;
 }
 
-div[class="block-container css-k1ih3n egzxvld4"]:first-of-type {
+div[class="appview-container css-1wrcr25 egzxvld6"]:first-of-type {
     height: 100%;
     background-image: url('https://github.com/Chahbaz-Aman/datastore/blob/main/Intel-oneAPI/3519f0c9523c78e1267b548e99bb2249.png?raw=true');
     background-repeat: no-repeat;
@@ -19,7 +19,7 @@ div[class="css-keje6w e1tzin5v2"] {
 }
 
 @media (min-width: 640px) {
-    div[class="block-container css-k1ih3n egzxvld4"]:first-of-type {
+    div[class="appview-container css-1wrcr25 egzxvld6"]:first-of-type {
         background-image: url('https://github.com/Chahbaz-Aman/datastore/blob/main/Intel-oneAPI/3519f0c9523c78e1267b548e99bb2249.png?raw=true');
         background-repeat: no-repeat;
         background-position: bottom right;
@@ -32,7 +32,7 @@ div[class="css-keje6w e1tzin5v2"] {
 }
 
 @media (min-width: 1200px) {
-    div[class="block-container css-k1ih3n egzxvld4"]:first-of-type {
+    div[class="appview-container css-1wrcr25 egzxvld6"]:first-of-type {
         background-image: url('https://github.com/Chahbaz-Aman/datastore/blob/main/Intel-oneAPI/3519f0c9523c78e1267b548e99bb2249.png?raw=true');
         background-repeat: no-repeat;
         background-position: bottom right;
@@ -50,6 +50,23 @@ div[class="css-keje6w e1tzin5v2"] {
 
 div[class="stDataFrame css-17b7mgn e17g77xh0"] {
     width: 100%;
+}
+
+table {
+    width: -webkit-fill-available;
+    caption-side: bottom;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 2%;
+    text-align: center;
+}
+
+thead {
+    background-color: rgb(240, 242, 246);
+}
+
+table .thead .tr {
+    text-align: center;
 }
 
 footer[class="css-164nlkn egzxvld1"] {

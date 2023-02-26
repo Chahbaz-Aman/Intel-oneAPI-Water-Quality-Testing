@@ -62,4 +62,11 @@ if X_test is not None:
     #results = results.set_index('Sample Code')
     results['Result'] = results['Result'].apply(
         lambda x: f'<img src = "{TICK}" style = "height:20px"/>' if x == 0 else f'<img src = "{CROSS}" style = "height:20px"/>')
-    left.write(results.to_html(escape=False), unsafe_allow_html=True)
+    left.write(results.to_html(escape=False,
+                               index=False,
+                               justify='center',
+                               border=0,
+                               table_id='results_table'
+                               ),
+               unsafe_allow_html=True
+               )
