@@ -1,5 +1,5 @@
-
 import streamlit as st
+import pandas as pd
 
 TF_PATH = 'models/Intel_oneDNN_TF_NeuralNet'
 
@@ -47,6 +47,24 @@ MONTHS = {'January': 1,
           'November': 11,
           'December': 12,
           }
+
+INDIAN_STANDARDS = {'pH': [6.5, 8.5, 8.5],
+                    'Iron': [0, 0.3, 0.3],
+                    'Nitrate': [0, 45, 45],
+                    'Chloride': [0, 250, 1000],
+                    'Lead': [0, 0.01, 0.05],
+                    'Zinc': [0, 5, 15],
+                    'Color': [0, 5, 15],
+                    'Turbidity': [0, 1, 5],
+                    'Fluoride': [0, 1, 1.5],
+                    'Copper': [0, 0.05, 1.5],
+                    'Odor': [0, 1, 2],
+                    'Sulfate': [0, 200, 400],
+                    'Conductivity': [],
+                    'Chlorine': [0, 0.2, 1],
+                    'Manganese': [0, 0.1, 0.3],
+                    'Total Dissolved Solids': [0, 500, 2000],
+                    }
 
 
 def local_css(file_name):

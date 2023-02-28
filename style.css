@@ -3,6 +3,7 @@
     color: #5885AF;
     color: #274472;
     color: #C3E0E5;
+    color: #FFEBA9;
 }
 
 span[class="css-10trblm e16nr0p30"] {
@@ -13,13 +14,17 @@ div[class="css-keje6w e1tzin5v2"] {
     background-color: rgba(255, 255, 255, 0.507);    
 }
 
+div[class="block-container css-k1ih3n egzxvld4"]:first-of-type {
+    padding-top: 2.875rem;
+}
+
 div[class="appview-container css-1wrcr25 egzxvld6"]:first-of-type {
     height: 100%;
-    /* background-image: url('https://github.com/Chahbaz-Aman/datastore/blob/main/Intel-oneAPI/3519f0c9523c78e1267b548e99bb2249.png?raw=true');
+    background-image: url('https://github.com/Chahbaz-Aman/datastore/blob/main/Intel-oneAPI/3519f0c9523c78e1267b548e99bb2249.png?raw=true');
     background-repeat: no-repeat;
     background-position: bottom center;
-    background-size: 50% auto; */
-    background: no-repeat top center/100% url('https://github.com/Chahbaz-Aman/datastore/blob/main/Intel-oneAPI/inverted.jpg?raw=true'), no-repeat bottom center/50% url('https://github.com/Chahbaz-Aman/datastore/blob/main/Intel-oneAPI/3519f0c9523c78e1267b548e99bb2249.png?raw=true');
+    background-size: 50% auto;
+    /* background: no-repeat top center/100% url('https://github.com/Chahbaz-Aman/datastore/blob/main/Intel-oneAPI/inverted.jpg?raw=true'), no-repeat bottom center/50% url('https://github.com/Chahbaz-Aman/datastore/blob/main/Intel-oneAPI/3519f0c9523c78e1267b548e99bb2249.png?raw=true'); */
 }
 
 div[class="css-keje6w e1tzin5v2"] {
@@ -71,6 +76,7 @@ div[class="stDataFrame css-17b7mgn e17g77xh0"] {
 
 table {
     width: -webkit-fill-available;
+    max-height: 20%;
     caption-side: bottom;
     border-collapse: collapse;
     background-color: rgba(255, 255, 255, 0.7);
@@ -86,7 +92,65 @@ table .thead .tr {
     text-align: center;
 }
 
+tbody tr:hover {
+    background-color: rgb(204, 240, 247);
+}
+
+tbody tr:active {
+    background-color: rgb(147, 231, 248);
+}
+
+td[class="side-header"] {
+    background-color: rgb(240, 242, 246);
+    font-weight: bold;
+}
+
 footer[class="css-164nlkn egzxvld1"] {
     height: 0;
     font-size: 0;
+}
+
+div[class="results_report"] {
+    overflow-y:scroll;
+    height: 426px;
+    max-height: 50vw;
+    display:flex;
+    vertical-align: middle;
+    border-top: 2px solid #274472;
+    border-bottom: 2px solid #274472;
+    border-radius: 1%
+}
+
+div[class="standards_report"] {
+    overflow-y:scroll;
+    height: 517px;
+    display:block;
+    border-top: 2px solid #274472;
+    border-bottom: 2px solid #274472;
+    border-radius: 1%
+}
+
+div[class="row-widget stDownloadButton"]{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 7px;
+}
+
+div[class="row-widget stDownloadButton"] button {
+    color: #fff;
+    background-color: #2f9146;
+    border-color: #2f9146;
+    transition: 0.4s
+}
+
+div[class="row-widget stDownloadButton"] button:hover {
+    color: #fff;
+    background-color: #1ebe43;
+    border-color: #1ebe43;
+}
+
+div[class="row-widget stDownloadButton"] button:active {
+    color: #fff;
+    background-color: #1ebe43;
+    border-color: #1ebe43;
 }
