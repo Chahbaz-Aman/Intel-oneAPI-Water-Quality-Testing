@@ -26,7 +26,23 @@ st.session_state['sample'] = None
 st.session_state['df'] = None
 st.session_state['X_test'] = None
 st.session_state['flag'] = 0
-
+INDIAN_STANDARDS = {'pH': [6.5, 8.5, 8.5],
+                    'Iron': [0, 0.3, 0.3],
+                    'Nitrate': [0, 45, 45],
+                    'Chloride': [0, 250, 1000],
+                    'Lead': [0, 0.01, 0.05],
+                    'Zinc': [0, 5, 15],
+                    'Color': [0, 5, 15],
+                    'Turbidity': [0, 1, 5],
+                    'Fluoride': [0, 1, 1.5],
+                    'Copper': [0, 0.05, 1.5],
+                    'Odor': [0, 1, 2],
+                    'Sulfate': [0, 200, 400],
+                    'Conductivity': [],
+                    'Chlorine': [0, 0.2, 1],
+                    'Manganese': [0, 0.1, 0.3],
+                    'Total Dissolved Solids': [0, 500, 2000],
+                    }
 
 uploaded_file = left.file_uploader("Upload test results in CSV format")
 model = xgb.XGBClassifier()
@@ -54,7 +70,6 @@ def load_test_results():
 
     return df, backup
 
-
 def translate_standard(range_):
     if len(range_) > 0:
         if range_[0] == 0:
@@ -63,7 +78,6 @@ def translate_standard(range_):
             return f"{range_[0]} - {range_[1]}" + (f", max {range_[-1]}" if len(range_) == 3 and range_[-1] != range_[1] else '')
     else:
         return "No spec"
-
 
 def make_report():
 
