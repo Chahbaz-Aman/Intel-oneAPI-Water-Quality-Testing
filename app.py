@@ -56,10 +56,12 @@ model.load_model(f'{XGB_PATH}/model.json')
 
 scaler = pickle.load(open(SCALER, 'rb'))
 logistic_regressor = pickle.load(open(LOGIT, 'rb'))
-
-suffix = 'tuned_XGB'
-xgboost = xgb.XGBClassifier()
-xgboost.load_model(f'{XGB_PATH}/model{suffix}.json')
+try:
+    suffix = 'tuned_XGB'
+    xgboost = xgb.XGBClassifier()
+    xgboost.load_model(f'{XGB_PATH}/model{suffix}.json')
+except:
+    pass
 
 try:
     suffix = 'deepNN100epochs_final'
