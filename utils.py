@@ -2,8 +2,9 @@ import streamlit as st
 import pandas as pd
 
 TF_PATH = 'models/Intel_oneDNN_TF_NeuralNet'
-
 XGB_PATH = 'models/Intel_oneDAL_XGBoost'
+LOGIT = 'models/logistic.sav'
+SCALER = 'models/scaler.pkl'
 
 CROSS = 'https://github.com/Chahbaz-Aman/datastore/blob/main/Intel-oneAPI/cross.jpg?raw=true'
 TICK = 'https://github.com/Chahbaz-Aman/datastore/blob/main/Intel-oneAPI/tick.jpg?raw=true'

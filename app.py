@@ -3,6 +3,11 @@ import pandas as pd
 import numpy as np
 import warnings
 import xgboost as xgb
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+import pickle
+
 from utils import *
 
 ############################### LAYOUT #####################################
@@ -45,8 +50,30 @@ INDIAN_STANDARDS = {'pH': [6.5, 8.5, 8.5],
                     }
 
 uploaded_file = left.file_uploader("Upload test results in CSV format")
+
 model = xgb.XGBClassifier()
 model.load_model(f'{XGB_PATH}/model.json')
+
+scaler = pickle.load(open(SCALER, 'rb'))
+logistic_regressor = pickle.load(open(LOGIT, 'rb'))
+
+suffix = 'tuned_XGB'
+xgboost = xgb.XGBClassifier()
+xgboost.load_model(f'{XGB_PATH}/model{suffix}.json')
+
+try:
+    suffix = 'deepNN100epochs_final'
+    json_file = open(f'{TF_PATH}/model_{suffix}.json', 'r')
+    loaded_model_json = json_file.read()
+    json_file.close()
+    neural_net = keras.models.model_from_json(loaded_model_json)
+    neural_net.load_weights(f'{TF_PATH}/weights_{suffix}.h5')
+except:
+    pass
+
+
+def predict():
+    return
 
 
 def load_test_results():
@@ -70,6 +97,7 @@ def load_test_results():
 
     return df, backup
 
+
 def translate_standard(range_):
     if len(range_) > 0:
         if range_[0] == 0:
@@ -78,6 +106,7 @@ def translate_standard(range_):
             return f"{range_[0]} - {range_[1]}" + (f", max {range_[-1]}" if len(range_) == 3 and range_[-1] != range_[1] else '')
     else:
         return "No spec"
+
 
 def make_report():
 
