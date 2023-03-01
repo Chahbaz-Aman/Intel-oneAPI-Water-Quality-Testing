@@ -2,7 +2,7 @@
 
 ![Jupyter Notebook](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=flat&logo=appveyor&logo=Jupyter)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chahbaz-aman-intel-oneapi-water-quality-testing-app-fn87o0.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chahbaz-aman-intel-oneapi-water-quality-testing-app-z9u762.streamlit.app/)
 [![git](https://badgen.net/badge/icon/git?icon=git&label)](https://git-scm.com)
 [![GitHub](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com)
 [![Visual Studio](https://badgen.net/badge/icon/visualstudio?icon=visualstudio&label)](https://visualstudio.microsoft.com)
@@ -27,7 +27,7 @@ A data science aproach to assess water quality from test results. The dataset pr
 
 While having more data is better, the development time increases drastically with such large file sizes. The implications of that being reduced productivity and a drop in innovative protyping & testing of ideas. <strong>Intel's oneAPI AI & Analytics Toolkit with optimized libraries offer dramatic boost to all the popular data science frameworks. </strong> This solution was <strong>developed on Intel DevCloud to use the host of XPU options and the oneDAL & oneDNN optimized libraries.</strong>
 
-We created a webapp! [View on Streamlit Community Cloud!](https://chahbaz-aman-intel-oneapi-water-quality-testing-app-fn87o0.streamlit.app/)
+We created a webapp! [View on Streamlit Community Cloud!](https://chahbaz-aman-intel-oneapi-water-quality-testing-app-z9u762.streamlit.app/)
 
 Instructions to use the app:
 * Upload the test results on the app in CSV format - multiple samples can be processed at once
