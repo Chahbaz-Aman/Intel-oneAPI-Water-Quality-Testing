@@ -33,27 +33,24 @@ st.session_state['flag'] = 0
 
 uploaded_file = left.file_uploader("Upload test results in CSV format")
 
-model = xgb.XGBClassifier()
-model.load_model(f'{XGB_PATH}/model.json')
 
-scaler = pickle.load(open(SCALER, 'rb'))
-logistic_regressor = pickle.load(open(LOGIT, 'rb'))
-try:
+@st.cache(ttl=0.5*3600)
+def load_models():
+    scaler = pickle.load(open(SCALER, 'rb'))
+    logistic_regressor = pickle.load(open(LOGIT, 'rb'))
+
     suffix = 'tuned_XGB'
     xgboost = xgb.XGBClassifier()
     xgboost.load_model(f'{XGB_PATH}/model_{suffix}.json')
-except:
-    pass
 
-try:
     suffix = 'largeNN'
     json_file = open(f'{TF_PATH}/model_{suffix}.json', 'r')
     loaded_model_json = json_file.read()
     json_file.close()
     neural_net = keras.models.model_from_json(loaded_model_json)
     neural_net.load_weights(f'{TF_PATH}/weights_{suffix}.h5')
-except:
-    pass
+
+    return scaler, xgboost, neural_net, logistic_regressor
 
 
 def preprocess(df: pd.DataFrame() = st.session_state['df']) -> pd.DataFrame():
@@ -193,6 +190,8 @@ def make_report():
 
     return standards_check
 
+
+scaler, xgboost, neural_net, logistic_regressor = load_models()
 
 if uploaded_file is not None:
     #st.session_state['X_test'], st.session_state['df'] = load_test_results()
