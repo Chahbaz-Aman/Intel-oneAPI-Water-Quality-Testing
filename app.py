@@ -34,7 +34,7 @@ st.session_state['flag'] = 0
 uploaded_file = left.file_uploader("Upload test results in CSV format")
 
 
-@st.cache(ttl=0.5*3600)
+@st.cache_resource
 def load_models():
     scaler = pickle.load(open(SCALER, 'rb'))
     logistic_regressor = pickle.load(open(LOGIT, 'rb'))
