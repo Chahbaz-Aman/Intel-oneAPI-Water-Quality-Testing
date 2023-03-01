@@ -67,6 +67,21 @@ INDIAN_STANDARDS = {'pH': [6.5, 8.5, 8.5],
                     'Total Dissolved Solids': [0, 500, 2000],
                     }
 
+COLS = ['pH', 'Iron', 'Nitrate', 'Chloride', 'Lead', 'Zinc', 'Turbidity',
+       'Fluoride', 'Copper', 'Odor', 'Sulfate', 'Conductivity', 'Chlorine',
+       'Manganese', 'Total Dissolved Solids', 'Water Temperature',
+       'Air Temperature', 'Month', 'Day', 'Time of Day',
+       'Color_Colorless', 'Color_Faint Yellow', 'Color_Light Yellow',
+       'Color_Near Colorless', 'Color_Yellow', 'Source_Aquifer',
+       'Source_Ground', 'Source_Lake', 'Source_Reservoir', 'Source_River',
+       'Source_Spring', 'Source_Stream', 'Source_Well', 'unacceptable_ind_pH',
+       'unacceptable_ind_Iron', 'unacceptable_ind_Nitrate',
+       'unacceptable_ind_Chloride', 'unacceptable_ind_Lead',
+       'unacceptable_ind_Zinc', 'unacceptable_ind_Turbidity',
+       'unacceptable_ind_Fluoride', 'unacceptable_ind_Copper',
+       'unacceptable_ind_Odor', 'unacceptable_ind_Sulfate',
+       'unacceptable_ind_Chlorine', 'unacceptable_ind_Manganese',
+       'unacceptable_ind_Total Dissolved Solids', 'IND_violations']
 
 def local_css(file_name):
     with open(file_name) as f:

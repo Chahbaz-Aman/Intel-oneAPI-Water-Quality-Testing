@@ -3,9 +3,8 @@ import pandas as pd
 import numpy as np
 import warnings
 import xgboost as xgb
-# import tensorflow as tf
-# from tensorflow import keras
-# from tensorflow.keras import layers
+import tensorflow as tf
+from tensorflow import keras
 import pickle
 
 from utils import *
@@ -59,12 +58,12 @@ logistic_regressor = pickle.load(open(LOGIT, 'rb'))
 try:
     suffix = 'tuned_XGB'
     xgboost = xgb.XGBClassifier()
-    xgboost.load_model(f'{XGB_PATH}/model{suffix}.json')
+    xgboost.load_model(f'{XGB_PATH}/model_{suffix}.json')
 except:
     pass
 
 try:
-    suffix = 'deepNN100epochs_final'
+    suffix = 'largeNN'
     json_file = open(f'{TF_PATH}/model_{suffix}.json', 'r')
     loaded_model_json = json_file.read()
     json_file.close()
@@ -74,30 +73,75 @@ except:
     pass
 
 
-def predict():
-    return
+def preprocess(df: pd.DataFrame() = st.session_state['df']) -> pd.DataFrame():
+    df = df.copy()
+    df.set_index('Index', inplace=True)
+
+    numeric_columns = list(df.select_dtypes(exclude=['object']).columns)
+
+    df['Month'] = df['Month'].apply(lambda m: MONTHS[m])
+
+    df = pd.get_dummies(df)
+    for col in [col for col in COLS if col not in df.columns]:
+        df[col] = 0
+
+    for parameter in INDIAN_STANDARDS.keys():
+        if len(INDIAN_STANDARDS[parameter]) > 0:
+            try:
+                df["unacceptable_ind_"+parameter] = df[parameter].apply(lambda test_result: int((test_result > INDIAN_STANDARDS[parameter][-1]) or
+                                                                                                (test_result < INDIAN_STANDARDS[parameter][0])))
+            except:
+                pass
+
+    df['IND_violations'] = sum(
+        [df[col] for col in df.columns if 'unacceptable_ind_' in col])
+
+    numeric_columns = [col for col in numeric_columns if col not in [
+        'Target', 'Day', 'Time of Day']]
+
+    df[numeric_columns] = scaler.transform(df[numeric_columns])
+
+    df['Time of Day'] = df['Time of Day'].apply(
+        lambda v: np.sin(2 * np.pi * v/24))
+    df['Day'] = df['Day'].apply(lambda v: np.sin(2 * np.pi * (v-1)/31))
+    df['Month'] = df['Month'].apply(lambda v: np.sin(2 * np.pi * (v-1)/12))
+
+    return df
+
+
+def predict(df):
+    xgb_output = xgboost.predict(df.values)
+    nn_output = neural_net.predict(df.values)
+
+    temp = pd.DataFrame(xgb_output, columns=['xgb'])
+    temp['nn'] = nn_output
+
+    y_pred = logistic_regressor.predict(temp.values)
+
+    return y_pred
 
 
 def load_test_results():
     df = pd.read_csv(uploaded_file, dtype=DTYPES)
-    backup = df.copy()
     if set(df.columns) != set(DTYPES.keys()):
-        st.write(df.columns)
-        st.write([col for col in df.columns if col not in list(DTYPES.keys())])
-        st.write("Uh-oh! Wrong file or incomplete results.")
+        left.write(df.columns)
+        left.write(
+            [col for col in df.columns if col not in list(DTYPES.keys())])
+        left.write("Uh-oh! Wrong file or incomplete report.")
         return None
 
     df = df[list(DTYPES.keys())]  # rearrange columns if necessary
 
     if df.isna().sum().max() != 0:
-        st.write("File has missing values!")
+        left.write("File has missing values!")
         return None
 
-    df['Month'] = df['Month'].apply(lambda m: MONTHS[m])
-    df.set_index('Index', inplace=True)
-    df = pd.get_dummies(df)
+    #backup = df.copy()
+    #df['Month'] = df['Month'].apply(lambda m: MONTHS[m])
+    #df.set_index('Index', inplace=True)
+    #df = pd.get_dummies(df)
 
-    return df, backup
+    return df
 
 
 def translate_standard(range_):
@@ -115,8 +159,8 @@ def make_report():
     record = st.session_state['df'][st.session_state['df'].Index ==
                                     st.session_state['sample']]
 
-    model_output_ = model.predict(
-        st.session_state['X_test'][list(st.session_state['df'].Index == st.session_state['sample'])].values)
+    model_output_ = predict(
+        st.session_state['X_test'][list(st.session_state['df'].Index == st.session_state['sample'])])
     if model_output_[0] == 0:
         model_output_ = f'''<table>
                             <tr>
@@ -168,11 +212,15 @@ def make_report():
 
 
 if uploaded_file is not None:
-    st.session_state['X_test'], st.session_state['df'] = load_test_results()
+    #st.session_state['X_test'], st.session_state['df'] = load_test_results()
+    st.session_state['df'] = load_test_results()
 
 
-if st.session_state['X_test'] is not None:
-    model_output = model.predict(st.session_state['X_test'].values)
+if st.session_state['df'] is not None:
+    st.session_state['X_test'] = preprocess(st.session_state['df'])
+
+    model_output = predict(st.session_state['X_test'])
+
     results = pd.DataFrame(model_output, columns=[
                            'Drinkability'], index=st.session_state['X_test'].index)
     results = results.reset_index().rename(columns={'Index': 'Sample Code'})
