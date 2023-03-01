@@ -6,7 +6,7 @@ import xgboost as xgb
 import tensorflow as tf
 from tensorflow import keras
 import pickle
-
+from utils import COLS
 from utils import *
 
 ############################### LAYOUT #####################################
