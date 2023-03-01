@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import warnings
 import xgboost as xgb
-import tensorflow as tf
 from tensorflow import keras
 import pickle
 from utils import COLS, INDIAN_STANDARDS
