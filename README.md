@@ -2,7 +2,7 @@
 
 ![Jupyter Notebook](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=flat&logo=appveyor&logo=Jupyter)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chahbaz-aman-intel-oneapi-water-quality-testing-app-z9u762.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chahbaz-aman-intel-oneapi-water-quality-testing-app-z9u762.streamlit.app)
 [![git](https://badgen.net/badge/icon/git?icon=git&label)](https://git-scm.com)
 [![GitHub](https://badgen.net/badge/icon/github?icon=github&label)](https://github.com)
 [![Visual Studio](https://badgen.net/badge/icon/visualstudio?icon=visualstudio&label)](https://visualstudio.microsoft.com)
